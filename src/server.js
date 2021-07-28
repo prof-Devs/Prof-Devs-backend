@@ -2,14 +2,16 @@
 
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+
 const notFoundHandler = require('./error-handlers/404.js');
 const errorHandler = require('./error-handlers/500.js');
-
+const authRoutes = require('./auth/routes.js');
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(authRoutes);
 
 app.get('/', (req, res) => {
 res.send('hello!!');
