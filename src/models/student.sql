@@ -24,7 +24,7 @@ CREATE TABLE subjects(
 
 DROP TABLE IF EXISTS course;
 CREATE TABLE course(
-  id SERIAL PRIMARY KEY,
+  SERIAL PRIMARY id KEY,
   courseName varchar(255),
 );
 
