@@ -5,8 +5,8 @@ const authRouter = express.Router();
 
 const User = require('./models/users.js');
 const basicAuth = require('./middleware/basic.js')
-const bearerAuth = require('./middleware/bearer.js')
-const permissions = require('./middleware/acl.js')
+// const bearerAuth = require('./middleware/bearer.js')
+// const permissions = require('./middleware/acl.js')
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
@@ -23,7 +23,7 @@ authRouter.post('/signup', async (req, res, next) => {
   }
 });
 
-authRouter.post('/signin', basicAuth, (req, res, next) => {
+authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
   const user = {
     user: req.user,
     token: req.user.token
@@ -31,18 +31,26 @@ authRouter.post('/signin', basicAuth, (req, res, next) => {
   res.status(200).json(user);
 });
 
-authRouter.get('/users', bearerAuth, permissions('delete'), async (req, res, next) => {
-  try{
-    const users = await User.find({});
-    const list = users.map(user => user.username);
-    res.status(200).json(list);
-  }catch(e){
-    throw new Error(e.message)
-  }
+authRouter.post('/signin/teacher', basicAuth.fun2, (req, res, next) => {
+  const user = {
+    user: req.user,
+    token: req.user.token
+  };
+  res.status(200).json(user);
 });
 
-authRouter.get('/secret', bearerAuth, async (req, res, next) => {
-  res.status(200).send('Welcome to the secret area')
-});
+// authRouter.get('/users', bearerAuth, permissions('delete'), async (req, res, next) => {
+//   try{
+//     const users = await User.find({});
+//     const list = users.map(user => user.username);
+//     res.status(200).json(list);
+//   }catch(e){
+//     throw new Error(e.message)
+//   }
+// });
+
+// authRouter.get('/secret', bearerAuth, async (req, res, next) => {
+//   res.status(200).send('Welcome to the secret area')
+// });
 
 module.exports = authRouter;
