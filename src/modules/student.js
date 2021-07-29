@@ -2,29 +2,26 @@
 
 const allStudents = [];
 
-const Student = require('../models/student');
+// const Student = require('../models/student');
 
-const createStudent = (id,name, password, courseId, age, level) => {
+const createStudent = (id, name, courseRoom) => {
   const student = {
     id,
     name,
-    password,
-    courseId,
-    age,
-    level,
+    courseRoom,
   }
 
   allStudents.push(student);
 
-  let newStudent = new Student({
-    studentName : name,
-    studentPassword : password,
-    studentAge : age,
-    studentLevel : level,
-  });
+  // let newStudent = new Student({
+  //   studentName : name,
+  //   studentPassword : password,
+  //   studentAge : age,
+  //   studentLevel : level,
+  // });
 
-  newStudent.save();
-  return student;
+  // newStudent.save();
+  return { student };
 };
 
 const getStudent = id => allStudents.find(student => student.id === id);
@@ -32,8 +29,11 @@ const getStudent = id => allStudents.find(student => student.id === id);
 const removeStudent = id => {
   const index = allStudents.findIndex(student => student.id === id);
   if (index !== -1) {
-    allStudents.splice(index, 1);
+    allStudents.splice(index, 1)[0];
   }
 };
 
-module.exports = { allStudents, createStudent, getStudent, removeStudent };
+const getStudntsInCourse = (courseRoom) => allStudents.filter((student) => student.courseRoom === courseRoom);
+
+
+module.exports = { allStudents, createStudent, getStudent, removeStudent, getStudntsInCourse };
