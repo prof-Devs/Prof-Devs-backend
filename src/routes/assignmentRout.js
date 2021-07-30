@@ -10,11 +10,13 @@ const assignmentInstCollection = new Collection(assignment);
 // -------------------//
 
 // assignment route 
-router.get('/', bearerAuth, assignmentHandleGetAll);
-router.get('/:id', bearerAuth, assignmentHandleGetOne);
-router.post('/', bearerAuth, permissions('create'), assignmentHandleCreate);
-router.put('/:id', bearerAuth, permissions('update'), assignmentHandleUpdate);
-router.delete('/:id', bearerAuth, permissions('delete'), assignmentHandleDelete);
+router.get('/student', bearerAuth.func1,assignmentHandleGetAll);
+router.get('/student/:id', bearerAuth.func1, assignmentHandleGetOne);
+router.get('/teacher',bearerAuth.func2, assignmentHandleGetAll);
+router.get('/teacher/:id', bearerAuth.func2, assignmentHandleGetOne);
+router.post('/', bearerAuth.func2, permissions('create'), assignmentHandleCreate);
+router.put('/:id', bearerAuth.func2, permissions('update'), assignmentHandleUpdate);
+router.delete('/:id',bearerAuth.func2, permissions('delete'), assignmentHandleDelete);
 
 // assignment functions
 

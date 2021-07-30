@@ -11,11 +11,13 @@ const quizInstCollection = new Collection(quiz);
 // -------------------//
 
 // quiz route 
-router.get('/', bearerAuth, quizHandleGetAll);
-router.get('/:id', bearerAuth, quizHandleGetOne);
-router.post('/', bearerAuth, permissions('create'), quizHandleCreate);
-router.put('/:id', bearerAuth, permissions('update'), quizHandleUpdate);
-router.delete('/:id', bearerAuth, permissions('delete'), quizHandleDelete);
+router.get('/student', bearerAuth.func1, quizHandleGetAll);
+router.get('/student/:id', bearerAuth.func1, quizHandleGetOne);
+router.get('/teacher',bearerAuth.func2, quizHandleGetAll);
+router.get('/teacher/:id', bearerAuth.func2, quizHandleGetOne);
+router.post('/',bearerAuth.func2, permissions('create'), quizHandleCreate);
+router.put('/:id', bearerAuth.func2, permissions('update'), quizHandleUpdate);
+router.delete('/:id',bearerAuth.func2, permissions('delete'), quizHandleDelete);
 
 // quiz functions
 

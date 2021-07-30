@@ -11,11 +11,14 @@ const courseInstCollection = new Collection(course);
 
 // -------------------//
 // course route 
-router.get('/', bearerAuth, courseHandleGetAll);
-router.get('/:id', bearerAuth, courseHandleGetOne);
-router.post('/', bearerAuth, permissions('create'), courseHandleCreate);
-router.put('/:id', bearerAuth, permissions('update'), courseHandleUpdate);
-router.delete('/:id', bearerAuth, permissions('delete'), courseHandleDelete);
+
+router.get('/student', bearerAuth.func1, courseHandleGetAll);
+router.get('/student/:id', bearerAuth.func1, courseHandleGetOne);
+router.get('/teacher',bearerAuth.func2, courseHandleGetAll);
+router.get('/teacher/:id',bearerAuth.func2, courseHandleGetOne);
+router.post('/',bearerAuth.func2, permissions('create'), courseHandleCreate);
+router.put('/:id',bearerAuth.func2, permissions('update'), courseHandleUpdate);
+router.delete('/:id', bearerAuth.func2, permissions('delete'), courseHandleDelete);
 
 // course functions
 
