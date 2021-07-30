@@ -43,12 +43,22 @@ function seeding() {
         teachersCourses:'science',
         role:'admin'
     });
+    const Haneen  = new modelTeacher({
+        email: 'aabonser@gmail.com',
+        password:'0000',
+        firstName:'Haneen',
+        lastName:'Abonser',
+        teachersCourses:'biology',
+        role:'admin'
+    });
 
-    Ibrahim.save();
-    Dina.save();
+    // Ibrahim.save();
+    // Dina.save();
+    // Haneen.save()
+
 }
 
-// seeding();
+seeding();
 
 module.exports = modelTeacher;
 
