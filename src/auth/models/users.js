@@ -5,9 +5,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 let secret =(process.env.SECRET||'ibrahim');
 const users = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, required: true, default: 'user', enum: ['user', 'editor', 'admin'] },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  gender: { type: String, required: true, default : 'Not Specify' },
+  birthDate: { type: Date, required: true, default: '1997-01-01' },
+  userCourses : {type : Object , required: false },
+  role: { type: String, required: true, default: 'user', enum: ['user','admin'] },
 });
 // }, { toObject: { getters: true } }); // What would this do if we use this instead of just });
 
@@ -15,7 +20,9 @@ const users = new mongoose.Schema({
 // So, on every user object ... this.token is now readable!
 users.virtual('token').get(function () {
   let tokenObject = {
-    username: this.username,
+    email:this.email,
+    firstName:this.firstName,
+    lastName:this.lastName
   }
   return jwt.sign(tokenObject, secret)
 });
@@ -23,7 +30,6 @@ users.virtual('token').get(function () {
 users.virtual('capabilities').get(function () {
   let acl = {
     user: ['read'],
-    editor: ['read', 'create', 'update'],
     admin: ['read', 'create', 'update', 'delete']
   };
   return acl[this.role];

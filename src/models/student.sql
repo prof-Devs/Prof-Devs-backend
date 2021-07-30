@@ -4,7 +4,8 @@ CREATE TABLE student(
   studentName varchar(255),
   studentPassword varchar(255),
   studentAge varchar(255),
-  studentLevel varchar(255)
+  studentLevel varchar(255),
+  studentRole varchar(255)
 );
 
 DROP TABLE IF EXISTS teacher;
@@ -13,7 +14,8 @@ CREATE TABLE teacher(
   teacherName varchar(255),
   teacherPassword varchar(255),
   teacherSubject varchar(255),
-  teacherCourses varchar(255)
+  teacherCourses varchar(255),
+  teacherRole varchar(255)
 );
 DROP TABLE IF EXISTS subjects;
 CREATE TABLE subjects(
