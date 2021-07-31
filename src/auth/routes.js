@@ -4,50 +4,85 @@ const express = require('express');
 const authRouter = express.Router();
 
 const User = require('./models/users.js');
+const Teacher = require('./models/teacher.js');
 const basicAuth = require('./middleware/basic.js')
 const bearerAuth = require('./middleware/bearer.js')
 const permissions = require('./middleware/acl.js')
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
-    const { age, firstName, gender, lastName, password, studentEmail } = req.body;
-    let user = new User({
-      email: studentEmail,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      gender: gender,
-      age: age,
+    console.log(req.headers);
+    // const { age, firstName, gender, lastName, password, studentEmail } = req.body;
+    // let user = new User({
+    //   email: studentEmail,
+    //   password: password,
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   gender: gender,
+    //   age: age,
 
-    });
-    await user.save();
-    res.send('You are successfully signed up!')
-    // const output = {
-    //   user: userRecord,
-    //   token: userRecord.token
-    // };
-    // res.status(201).json(output);
+    // });
+    const userRecord = new User(req.body);
+    await userRecord.save();
+    // res.send('You are successfully signed up!')
+    const output = {
+      user: userRecord,
+      token: userRecord.token
+    };
+    res.status(201).json(output);
   } catch (e) {
-    res.send('Email is already exist');
+    // res.send('Email is already exist');
     next(e.message)
 
   }
 });
 
+authRouter.get('/getUsers', async (req, res, next) => {
+  try {
+    const allUsers = [];
+    const students = await User.find({});
+
+    const teachers = await Teacher.find({});
+    students.map(ele => allUsers.push(ele));
+    teachers.map(ele => allUsers.push(ele));
+
+    res.send(allUsers);
+  } catch (e) {
+    throw new Error(e.message)
+  }
+});
+
+
+
+
 authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
-  const user = {
-    user: req.user,
-    token: req.user.token
-  };
-  res.status(200).json(user);
+  try {
+    //  console.log('Hello');
+    //   const user = {
+    //     user: req.user,
+    //     token: req.user.token
+    //   };
+    // res.status(200).json(user);
+  } catch (e) {
+    res.send('Incorrect password');
+    throw new Error(e.message)
+  }
 });
 
 authRouter.post('/signin/teacher', basicAuth.fun2, (req, res, next) => {
-  const user = {
-    user: req.user,
-    token: req.user.token
-  };
-  res.status(200).json(user);
+  try {
+    console.log('Hello');
+    const user = {
+      user: req.user,
+      token: req.user.token
+    };
+  } catch (e) {
+    res.send('Incorrect password');
+    throw new Error(e.message)
+  }
+
+
+  // res.status(200).json(user);
 });
 
 authRouter.delete('/userDelete/:id', bearerAuth.func2, permissions('delete'), async (req, res, next) => {
