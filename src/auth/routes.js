@@ -10,16 +10,27 @@ const permissions = require('./middleware/acl.js')
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
-    let user = new User(req.body);
-    const userRecord = await user.save();
-    const output = {
-      user: userRecord,
-      token: userRecord.token
-    };
-    res.status(201).json(output);
-  } catch (e) {
+    const { age, firstName, gender, lastName, password, studentEmail } = req.body;
+    let user = new User({
+      email: studentEmail,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      gender: gender,
+      age: age,
 
+    });
+    await user.save();
+    res.send('You are successfully signed up!')
+    // const output = {
+    //   user: userRecord,
+    //   token: userRecord.token
+    // };
+    // res.status(201).json(output);
+  } catch (e) {
+    res.send('Email is already exist');
     next(e.message)
+
   }
 });
 
@@ -40,22 +51,22 @@ authRouter.post('/signin/teacher', basicAuth.fun2, (req, res, next) => {
 });
 
 authRouter.delete('/userDelete/:id', bearerAuth.func2, permissions('delete'), async (req, res, next) => {
-  try{
+  try {
     const id = req.params.id;
     await User.findByIdAndDelete(id);
     // const list = users.map(user => user.email);
     res.status(200).json('user was deleted');
-  }catch(e){
+  } catch (e) {
     throw new Error(e.message)
   }
 });
 authRouter.get('/showStudents', bearerAuth.func2, permissions('read'), async (req, res, next) => {
-  try{
-   
+  try {
+
     const users = await User.find({})
     const list = users.map(user => user.email);
     res.status(200).json(list);
-  }catch(e){
+  } catch (e) {
     throw new Error(e.message)
   }
 });
