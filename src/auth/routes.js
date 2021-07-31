@@ -11,25 +11,25 @@ const permissions = require('./middleware/acl.js')
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
-    console.log(req.headers);
-    // const { age, firstName, gender, lastName, password, studentEmail } = req.body;
-    // let user = new User({
-    //   email: studentEmail,
-    //   password: password,
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   gender: gender,
-    //   age: age,
+    // console.log(req.headers);
+    const { age, firstName, gender, lastName, password, studentEmail } = req.body;
+    let user = new User({
+      email: studentEmail,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      gender: gender,
+      age: age,
 
-    // });
-    const userRecord = new User(req.body);
+    });
+    const userRecord = new User(user);
     await userRecord.save();
-    // res.send('You are successfully signed up!')
-    const output = {
-      user: userRecord,
-      token: userRecord.token
-    };
-    res.status(201).json(output);
+    res.send('You are successfully signed up!')
+    // const output = {
+    //   user: userRecord,
+    //   token: userRecord.token
+    // };
+    // res.status(201).json(output);
   } catch (e) {
     // res.send('Email is already exist');
     next(e.message)
@@ -57,6 +57,7 @@ authRouter.get('/getUsers', async (req, res, next) => {
 
 authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
   try {
+    res.send('you are signedIn!')
     //  console.log('Hello');
     //   const user = {
     //     user: req.user,
@@ -71,11 +72,12 @@ authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
 
 authRouter.post('/signin/teacher', basicAuth.fun2, (req, res, next) => {
   try {
-    console.log('Hello');
-    const user = {
-      user: req.user,
-      token: req.user.token
-    };
+    // console.log('Hello');
+    res.send('you are signedIn!')
+    // const user = {
+    //   user: req.user,
+    //   token: req.user.token
+    // };
   } catch (e) {
     res.send('Incorrect password');
     throw new Error(e.message)
