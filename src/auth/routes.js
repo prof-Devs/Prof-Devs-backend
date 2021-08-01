@@ -9,7 +9,7 @@ const basicAuth = require('./middleware/basic.js')
 const bearerAuth = require('./middleware/bearer.js')
 const permissions = require('./middleware/acl.js')
 
-authRouter.post('/signup', async (req, res, next) => {
+authRouter.post('/signup/student', async (req, res, next) => {
   try {
     // console.log(req.headers);
     // const { age, firstName, gender, lastName, password, studentEmail } = req.body;
@@ -32,6 +32,21 @@ authRouter.post('/signup', async (req, res, next) => {
     res.status(201).json(output);
   } catch (e) {
     // res.send('Email is already exist');
+    next('Email is already exist')
+  }
+});
+
+authRouter.post('/signup/teacher', async (req, res, next) => {
+  try {
+
+    const userRecord = new Teacher(req.body);
+    await userRecord.save();
+    const output = {
+      user: userRecord,
+      token: userRecord.token
+    };
+    res.status(201).json(output);
+  } catch (e) {
     next('Email is already exist')
   }
 });
