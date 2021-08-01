@@ -4,10 +4,10 @@ const express = require('express');
 const cors = require('cors');
 // const morgan = require('morgan');
 require('dotenv').config();
-const http = require('http');
+// const http = require('http');
 const app = express();
-const io = require('socket.io')(http);
-const server = http.createServer(app);
+// const io = require('socket.io')(http);
+// const server = http.createServer(app);
 const User = require('./auth/models/users');
 
 
