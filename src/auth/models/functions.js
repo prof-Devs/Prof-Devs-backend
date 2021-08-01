@@ -15,8 +15,8 @@ const forVirtual = function () {
 const forVirtual2 = function () {
     let acl = {
         user: ['read'],
-        editor: ['read', 'create', 'update'],
-        admin: ['read', 'create', 'update', 'delete']
+        editor: ['read', 'create', 'update','delete'],
+        admin: ['read', 'create', 'update','delete','adminDelete']
     };
     return acl[this.role];
 }

@@ -9,7 +9,7 @@ const teachers = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     teachersCourses: { type: Object, required: false },
-    role: { type: String, required: true, default: 'admin', enum: 'admin' }
+    role: { type: String, required: true, default: 'editor', enum: 'editor' }
 });
 
 teachers.virtual('token').get(functionModel.forVirtual);
@@ -33,7 +33,7 @@ function seeding() {
         firstName: 'Ibrahim',
         lastName: 'AbuAwad',
         teachersCourses: ['math', 'art', 'music'],
-        role: 'admin'
+        role: 'editor'
     });
     const Dina = new modelTeacher({
         email: 'dina.faur@yahoo.com',
@@ -41,7 +41,7 @@ function seeding() {
         firstName: 'Dina',
         lastName: 'Khaleel',
         teachersCourses: 'science',
-        role: 'admin'
+        role: 'editor'
     });
     const Haneen = new modelTeacher({
         email: 'aabonser@gmail.com',
@@ -49,15 +49,24 @@ function seeding() {
         firstName: 'Haneen',
         lastName: 'Abonser',
         teachersCourses: 'biology',
-        role: 'admin'
+        role: 'editor'
+    });
+    const Sukina = new modelTeacher({
+        email: 'sukina_89@gmail.com',
+        password: '0000',
+        firstName: 'Sukina',
+        lastName: 'Abonser',
+        teachersCourses: 'biology',
+        role: 'editor'
     });
 
     // Ibrahim.save();
-    // Dina.save();
-    // Haneen.save()
+    Dina.save();
+    // Haneen.save();
+    // Sukina.save();
 
 }
-
+// let arrayTest= [Ibrahim.email,Dina.email,Haneen.email];
 seeding();
 
 module.exports = modelTeacher;
