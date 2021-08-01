@@ -3,11 +3,11 @@
 const express = require('express');
 const cors = require('cors');
 // const morgan = require('morgan');
-require('dotenv').config();
-const http = require('http');
 const app = express();
+require('dotenv').config();
+const http = require('http').createServer(app);;
 const io = require('socket.io')(http);
-const server = http.createServer(app);
+
 const User = require('./auth/models/users');
 
 
@@ -28,30 +28,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 
 
-
-// io.on('connection', (socket) => {
-
-//   socket.on('signup', (payload) => {
-//     const data = {
-//       email: payload.studentEmail,
-//       password: payload.password,
-//       firstName: payload.firstName,
-//       lastName: payload.lastName,
-//       gender: payload.gender,
-//       age: payload.age,
-//     }
-//     console.log(payload)
-//     let user = new User(data);
-//     user.save();
-    // const output = {
-    //   user: userRecord,
-    //   token: userRecord.token
-
-    // };
-//   }
-//   )
-
-
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    console.log('hello hoooo');
+    io.emit('message', { name, message })
+  })
+})
 //   socket.on('join', ({ name, courseRoom }, callback) => {
 
 //     const { error, student } = createStudent({ id: socket.id, name, courseRoom });
@@ -108,9 +90,9 @@ app.use(errorHandler);
 
 
 module.exports = {
-  server: app,
+  // server: app,
   start: port => {
     if (!port) { throw new Error("Missing Port"); }
-    app.listen(port, () => console.log(`Listening on ${port}`));
+    http.listen(port, () => console.log(`Listening on ${port}`));
   },
 };
