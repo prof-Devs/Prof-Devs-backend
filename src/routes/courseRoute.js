@@ -21,6 +21,7 @@ router.post('/',bearerAuth.func2, permissions('create'),courseHandleCreate);
 router.put('/:id',bearerAuth.func2, permissions('update'), courseHandleUpdate);
 router.delete('/:id', bearerAuth.func2, permissions('delete'), courseHandleDelete);
 
+
 // course functions
 
 async function courseHandleGetAll(req, res) {

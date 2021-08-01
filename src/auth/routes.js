@@ -5,6 +5,7 @@ const authRouter = express.Router();
 
 const User = require('./models/users.js');
 const Teacher = require('./models/teacher.js');
+const Admin = require('./models/admin');
 const basicAuth = require('./middleware/basic.js')
 const bearerAuth = require('./middleware/bearer.js')
 const permissions = require('./middleware/acl.js')
@@ -51,6 +52,35 @@ authRouter.post('/signup/teacher', async (req, res, next) => {
   }
 });
 
+authRouter.post('/signup/admin', async (req, res, next) => {
+  try {
+
+    const userRecord = new Admin(req.body);
+    await userRecord.save();
+    const output = {
+      user: userRecord,
+      token: userRecord.token
+    };
+    res.status(201).json(output);
+  } catch (e) {
+    next('Email is already exist')
+  }
+});
+authRouter.post('/signin/admin', basicAuth.fun3, (req, res, next) => {
+  try {
+    // res.send('you are signedIn!')
+
+     console.log('Hello');
+      const user = {
+        user: req.user,
+        token: req.user.token
+      };
+    res.status(200).json(user);
+  } catch (e) {
+    res.send('Incorrect password');
+    throw new Error(e.message)
+  }
+});
 // authRouter.get('/getUsers', async (req, res, next) => {
 //   try {
 //     const allUsers = [];
@@ -66,17 +96,17 @@ authRouter.post('/signup/teacher', async (req, res, next) => {
 //   }
 // });
 
-// authRouter0.get('/getTeachers', async (req, res, next) => {
-//   try {
-//     const allTeachers = [];
-//     const teachers = await Teacher.find({});
-//     teachers.map(ele => allTeachers.push(ele.email));
+authRouter.get('/getTeachers', async (req, res, next) => {
+  try {
+    const allTeachers = [];
+    const teachers = await Teacher.find({});
+    teachers.map(ele => allTeachers.push({'email':ele.email,'id':ele._id}));
 
-//     res.send(allTeachers);
-//   } catch (e) {
-//     throw new Error(e.message)
-//   }
-// });
+    res.send(allTeachers);
+  } catch (e) {
+    throw new Error(e.message)
+  }
+});
 
 
 authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
@@ -128,6 +158,17 @@ authRouter.get('/showStudents', bearerAuth.func2, permissions('read'), async (re
     const list = users.map(user => user.email);
     res.status(200).json(list);
   } catch (e) {
+    throw new Error(e.message)
+  }
+});
+authRouter.delete('/teacherDelete/:id', bearerAuth.func3, permissions('adminDelete'), async (req, res, next) => {
+  try {
+   
+    const id = req.params.id;
+    await Teacher.findByIdAndDelete(id);
+    res.status(200).json('teacher is deleted');
+  } catch (e) {
+    console.log('hiiiiiiiiiiiiiiiiiiiiiii');
     throw new Error(e.message)
   }
 });
