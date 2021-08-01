@@ -6,8 +6,8 @@ const assignment = new mongoose.Schema({
   text:{type: String, required: true},
   due_date:{type: Date ,required: true},
 //   assignmentFile:{type: Object},
-  solution:{type: Object},
-  studentsName: { type: Object }
+  solution:{type: Object,required:false},
+  studentsName: { type: Object,required:false }
 });
 
 module.exports = mongoose.model('assignment', assignment);
