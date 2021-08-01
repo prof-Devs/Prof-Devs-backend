@@ -55,9 +55,9 @@ function seeding() {
     // Ibrahim.save();
     // Dina.save();
     // Haneen.save()
-
+    // arrayTest.push()
 }
-
+// let arrayTest= [Ibrahim.email,Dina.email,Haneen.email];
 seeding();
 
 module.exports = modelTeacher;
