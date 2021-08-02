@@ -24,6 +24,10 @@ class DataCollection {
     return this.model.findByIdAndUpdate(_id, record, { new: true });
   }
 
+  // updatedByStudent(_id,solution) {
+  //   return this.model.findByIdAndUpdate(_id,solution,{ new: true });
+  // }
+
   delete(_id) {
     return this.model.findByIdAndDelete(_id);
   }

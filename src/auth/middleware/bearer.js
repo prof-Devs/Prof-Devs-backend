@@ -8,8 +8,6 @@ const admins = require('../models/admin')
 const func1 = async (req, res, next) => {
  
   try {
-    // console.log(req.body);
- 
     if (!req.headers.authorization) { _authError() }
 
     const token = req.headers.authorization.split(' ').pop();
@@ -31,19 +29,12 @@ const func1 = async (req, res, next) => {
 // for teacher!!!
 
 const func2 = async (req, res, next) => {
-  // console.log('gggg',req);
-  // console.log('req.headers.authorization',req.headers.authorization);
-
   try {
 
     if (!req.headers.authorization) { _authError() }
   
     const token = req.headers.authorization.split(' ').pop();
     const validUser = await teacherUsers.authenticateWithToken(token);
-    // const testing = await gettingTeachers.authRouter0;
-    // const decoding = 
-    // testing.map
-   
     req.user = validUser;
     req.token = validUser.token;
     next();
@@ -58,19 +49,12 @@ const func2 = async (req, res, next) => {
 }
 
 const func3 = async (req, res, next) => {
-  // console.log('gggg',req);
-  // console.log('req.headers.authorization',req.headers.authorization);
-
   try {
 
     if (!req.headers.authorization) { _authError() }
   
     const token = req.headers.authorization.split(' ').pop();
     const validUser = await admins.authenticateWithToken(token);
-    // const testing = await gettingTeachers.authRouter0;
-    // const decoding = 
-    // testing.map
-   
     req.user = validUser;
     req.token = validUser.token;
     next();

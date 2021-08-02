@@ -14,7 +14,7 @@ const forVirtual = function () {
 
 const forVirtual2 = function () {
     let acl = {
-        user: ['read'],
+        user: ['read','studentUpdate'],
         editor: ['read', 'create', 'update','delete'],
         admin: ['read', 'create', 'update','delete','adminDelete']
     };
@@ -27,7 +27,6 @@ const forPre = async function () {
             this.password = await bcrypt.hash(this.password, 10);
         }
     } catch (e) {
-        console.log(e.message);
         throw new Error(e.message);
     }
 }
