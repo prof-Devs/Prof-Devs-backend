@@ -40,7 +40,7 @@ app.use(authRoutes);
 //       gender: payload.gender,
 //       age: payload.age,
 //     }
-//     (payload)
+//     console.log(payload)
 //     let user = new User(data);
 //     user.save();
     // const output = {
@@ -111,6 +111,6 @@ module.exports = {
   server: app,
   start: port => {
     if (!port) { throw new Error("Missing Port"); }
-    app.listen(port, () => (`Listening on ${port}`));
+    app.listen(port, () => console.log(`Listening on ${port}`));
   },
 };

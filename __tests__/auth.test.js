@@ -99,7 +99,7 @@ test('get teacher ', async () => {
     const response = await request.get(`/getTeachers`);
     expect(response.status).toBe(200);
     // (response.body);
-    expect(response.body[1].email).toEqual('ibrahimabuawadwork@gmail.com')
+    expect(response.body[0].email).toEqual('ibrahimabuawadwork@gmail.com')
 })
 
 // delete teacher by admin
@@ -110,5 +110,4 @@ test('admin delete teacher ', async () => {
     .set({ "Authorization": `Bearer ${adminToken}` });
     expect(response.status).toBe(200);
 })
-
 })
