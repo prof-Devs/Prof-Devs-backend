@@ -16,6 +16,7 @@ router.get('/teacher',bearerAuth.func2, assignmentHandleGetAll);
 router.get('/teacher/:id', bearerAuth.func2, assignmentHandleGetOne);
 router.post('/', bearerAuth.func2, permissions('create'), assignmentHandleCreate);
 router.put('/:id', bearerAuth.func2, permissions('update'), assignmentHandleUpdate);
+router.put('/student/:id', bearerAuth.func1, permissions('studentUpdate'), HandleUpdateAssignmentStudents);
 router.delete('/:id',bearerAuth.func2, permissions('delete'), assignmentHandleDelete);
 
 // assignment functions
@@ -56,6 +57,18 @@ async function assignmentHandleUpdate(req, res) {
         const id = req.params.id;
         const obj = req.body;
         let updatedRecord = await assignmentInstCollection.update(id, obj)
+        res.status(200).json(updatedRecord);
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+async function HandleUpdateAssignmentStudents(req, res) {
+    try {
+        const id = req.params.id;
+        const solution=req.body.solution;
+        let objNew={"solution":solution}
+        let updatedRecord = await assignmentInstCollection.update(id,objNew)
         res.status(200).json(updatedRecord);
     } catch (e) {
         throw new Error(e.message)

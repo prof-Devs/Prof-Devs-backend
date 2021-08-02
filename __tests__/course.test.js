@@ -73,7 +73,7 @@ test('get method for course by teacher', async () => {
     const response = await request.get('/course/teacher')
     .set({ "Authorization": `Bearer ${teacherToken}` });
     expect(response.status).toBe(200);
-    console.log(response.body);
+    (response.body);
     expect(response.body[0].courseName).toBe('Math');
     expect(response.body[0].courseStudents[0]).toBe('hiba');
     expect(response.body[0].courseTeacher).toEqual('Dina');
@@ -84,7 +84,7 @@ test('get method for course by teacher using id', async () => {
     const response = await request.get(`/course/teacher/${id}`)
     .set({ "Authorization": `Bearer ${teacherToken}` });
     expect(response.status).toBe(200);
-    console.log(response.body);
+    (response.body);
     expect(response.body.courseName).toBe('Math');
     expect(response.body.courseStudents[0]).toBe('hiba');
     expect(response.body.courseTeacher).toEqual('Dina');
@@ -95,7 +95,7 @@ test('get method for course by student', async () => {
     const response = await request.get('/course/student')
     .set({ "Authorization": `Bearer ${studentToken}` });
     expect(response.status).toBe(200);
-    console.log(response.body);
+    (response.body);
     expect(response.body[0].courseName).toBe('Math');
     expect(response.body[0].courseStudents[0]).toBe('hiba');
     expect(response.body[0].courseTeacher).toEqual('Dina');
@@ -106,7 +106,7 @@ test('get method for course by student using id', async () => {
     const response = await request.get(`/course/student/${id}`)
     .set({ "Authorization": `Bearer ${studentToken}` });
     expect(response.status).toBe(200);
-    console.log(response.body);
+    (response.body);
     expect(response.body.courseName).toBe('Math');
     expect(response.body.courseStudents[0]).toBe('hiba');
     expect(response.body.courseTeacher).toEqual('Dina');
@@ -123,7 +123,7 @@ test('update method for course by id', async () => {
     })
     .set({ "Authorization": `Bearer ${teacherToken}` });
     expect(response.status).toBe(200);
-    console.log(response.body);
+    (response.body);
     expect(response.body.courseName).toBe('biology');
     expect(response.body.courseStudents[2]).toBe('Khaled');
     expect(response.body.courseTeacher).toEqual('Dina');

@@ -55,16 +55,14 @@ function seeding() {
         email: 'sukina_89@gmail.com',
         password: '0000',
         firstName: 'Sukina',
-        lastName: 'Abonser',
-        teachersCourses: 'biology',
+        lastName: 'AboHammad',
+        teachersCourses: 'chemistry',
         role: 'editor'
     });
-
     // Ibrahim.save();
-    Dina.save();
+    // Dina.save();
     // Haneen.save();
     // Sukina.save();
-
 }
 // let arrayTest= [Ibrahim.email,Dina.email,Haneen.email];
 seeding();

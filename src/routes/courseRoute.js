@@ -4,7 +4,7 @@ const Collection = require('./data.collection');
 const bearerAuth = require('../auth/middleware/bearer');
 const permissions = require('../auth/middleware/acl');
 const course = require('../auth/models/course');
-// const testingRole = require('../auth/middleware/testingRole')
+
 
 const router = express.Router();
 

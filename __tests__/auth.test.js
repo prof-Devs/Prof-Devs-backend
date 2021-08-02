@@ -61,9 +61,9 @@ test('teacher sign in ', async () => {
 
 test('get students ', async () => {
     const response = await request.get(`/showStudents`).set({ "Authorization": `Bearer ${teacherToken}` });
-    // console.log('accesssss',response.body);
+    // ('accesssss',response.body);
     expect(response.status).toBe(200);
-    // console.log(response.body);
+    // (response.body);
     expect(response.body[0]).toEqual('student@gmail.com')
 })
 
@@ -98,17 +98,16 @@ test('admin sign in ', async () => {
 test('get teacher ', async () => {
     const response = await request.get(`/getTeachers`);
     expect(response.status).toBe(200);
-    // console.log(response.body);
-    expect(response.body[1].email).toEqual('ibrahimabuawadwork@gmail.com')
+    // (response.body);
+    expect(response.body[0].email).toEqual('ibrahimabuawadwork@gmail.com')
 })
 
 // delete teacher by admin
 
 test('admin delete teacher ', async () => {
-    console.log('teacher id',id);
+    ('teacher id',id);
     const response = await request.delete(`/teacherDelete/${id}`)
     .set({ "Authorization": `Bearer ${adminToken}` });
     expect(response.status).toBe(200);
 })
-
 })

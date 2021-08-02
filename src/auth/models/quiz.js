@@ -7,8 +7,8 @@ const quiz = new mongoose.Schema({
   questions:{type: Array, required: true}, //array of objects [{question:'', options:[], correct-answer:''},{}]
   timer:{type: Number ,required: true},
   quizFile:{type: Buffer},
-  solution:{type:Array}, //[{student:email , answers:{} , time:11}]
-  students: { type: Array }
+  solution:{type:Array} //[{student:email , answers:{} , time:11}]
+  // students: { type: Array }
 });
 
 module.exports = mongoose.model('quiz', quiz);

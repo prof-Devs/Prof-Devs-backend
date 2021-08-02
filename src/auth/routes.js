@@ -12,7 +12,7 @@ const permissions = require('./middleware/acl.js')
 
 authRouter.post('/signup/student', async (req, res, next) => {
   try {
-    // console.log(req.headers);
+    // (req.headers);
     // const { age, firstName, gender, lastName, password, studentEmail } = req.body;
     // let user = new User({
     //   email: studentEmail,
@@ -70,7 +70,7 @@ authRouter.post('/signin/admin', basicAuth.fun3, (req, res, next) => {
   try {
     // res.send('you are signedIn!')
 
-     console.log('Hello');
+     ('Hello');
       const user = {
         user: req.user,
         token: req.user.token
@@ -113,7 +113,7 @@ authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
   try {
     // res.send('you are signedIn!')
 
-     console.log('Hello');
+     ('Hello');
       const user = {
         user: req.user,
         token: req.user.token
@@ -127,7 +127,7 @@ authRouter.post('/signin/user', basicAuth.fun1, (req, res, next) => {
 
 authRouter.post('/signin/teacher', basicAuth.fun2, (req, res, next) => {
   try {
-    // console.log('Hello');
+    // ('Hello');
     // res.send('you are signedIn!')
     const user = {
       user: req.user,
@@ -168,7 +168,7 @@ authRouter.delete('/teacherDelete/:id', bearerAuth.func3, permissions('adminDele
     await Teacher.findByIdAndDelete(id);
     res.status(200).json('teacher is deleted');
   } catch (e) {
-    console.log('hiiiiiiiiiiiiiiiiiiiiiii');
+    ('hiiiiiiiiiiiiiiiiiiiiiii');
     throw new Error(e.message)
   }
 });

@@ -6,14 +6,14 @@ const User2 = require('../models/teacher.js');
 const admin = require('../models/admin');
 
 const fun1 = async (req, res, next) => {
-  // console.log(req.body.role);
+  // (req.body.role);
   if (!req.headers.authorization) { return _authError(); }
 
   let basic = req.headers.authorization.split(' ').pop();
   let [user, pass] = base64.decode(basic).split(':');
 
   try {
-    // console.log('Hello again')
+    // ('Hello again')
     req.user = await User.authenticateBasic(user, pass)
     next();
   } catch (e) {
@@ -27,7 +27,7 @@ const fun1 = async (req, res, next) => {
 }
 
 const fun2 = async (req, res, next) => {
-  // console.log(req.body.headers.authorization);
+  // (req.body.headers.authorization);
   if (!req.headers.authorization) { return _authError(); }
 // Basic hghgawewqewfe=
   let basic = req.headers.authorization.split(' ').pop();
@@ -46,7 +46,7 @@ const fun2 = async (req, res, next) => {
 }
 
 const fun3 = async (req, res, next) => {
-  // console.log(req.body.headers.authorization);
+  // (req.body.headers.authorization);
   if (!req.headers.authorization) { return _authError(); }
 // Basic hghgawewqewfe=
   let basic = req.headers.authorization.split(' ').pop();

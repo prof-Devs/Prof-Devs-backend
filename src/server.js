@@ -4,19 +4,11 @@ const express = require('express');
 const cors = require('cors');
 // const morgan = require('morgan');
 require('dotenv').config();
-const http = require('http');
+// const http = require('http');
 const app = express();
-const socketio = require ('socket.io');
 // const io = require('socket.io')(http);
 // const server = http.createServer(app);
 const User = require('./auth/models/users');
-
-const server = http.createServer(app);
-const io = socketio(server, 
-  {cors:
-    {origin: 'http://localhost:3000',
-    credentials: true,  }
-});
 
 
 const notFoundHandler = require('./error-handlers/404.js');
@@ -35,13 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(authRoutes);
 
-
-io.on('connection', socket => {
-  socket.on('message', ({ name, message }) => {
-    console.log('hello hoooo');
-    io.emit('message', { name, message })
-  })
-})
 
 
 // io.on('connection', (socket) => {
@@ -123,9 +108,9 @@ app.use(errorHandler);
 
 
 module.exports = {
-  // server: app,
+  server: app,
   start: port => {
     if (!port) { throw new Error("Missing Port"); }
-    server.listen(port, () => console.log(`Listening on ${port}`));
+    app.listen(port, () => console.log(`Listening on ${port}`));
   },
 };

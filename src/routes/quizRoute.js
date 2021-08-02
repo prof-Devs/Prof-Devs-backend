@@ -17,6 +17,7 @@ router.get('/teacher',bearerAuth.func2, quizHandleGetAll);
 router.get('/teacher/:id', bearerAuth.func2, quizHandleGetOne);
 router.post('/',bearerAuth.func2, permissions('create'), quizHandleCreate);
 router.put('/:id', bearerAuth.func2, permissions('update'), quizHandleUpdate);
+router.put('/student/:id', bearerAuth.func1, permissions('studentUpdate'), HandleUpdatequizStudents);
 router.delete('/:id',bearerAuth.func2, permissions('delete'), quizHandleDelete);
 
 // quiz functions
@@ -57,6 +58,18 @@ async function quizHandleUpdate(req, res) {
         const id = req.params.id;
         const obj = req.body;
         let updatedRecord = await quizInstCollection.update(id, obj)
+        res.status(200).json(updatedRecord);
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+async function HandleUpdatequizStudents(req, res) {
+    try {
+        const id = req.params.id;
+        const solution=req.body.solution;
+        let objNew={"solution":solution}
+        let updatedRecord = await quizInstCollection.update(id,objNew)
         res.status(200).json(updatedRecord);
     } catch (e) {
         throw new Error(e.message)
