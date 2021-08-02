@@ -14,7 +14,7 @@ const User = require('./auth/models/users');
 const server = http.createServer(app);
 const io = socketio(server, 
   {cors:
-    {origin: 'http://localhost:3000',
+    {origin: 'https://profdev-academy.netlify.app',
     credentials: true,  }
 });
 
