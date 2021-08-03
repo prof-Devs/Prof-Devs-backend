@@ -90,7 +90,12 @@ Educational process is taking a critical path and become online according to cur
 
 ![preview](./assets/testingQuiz.jpg)
 
+![preview](./assets/courseTests.JPG)
+
+![preview](./assets/authTests.JPG)
+
 ![preview](./assets/testinfAll.JPG)
+
 
 ### Deployments URLs
 
