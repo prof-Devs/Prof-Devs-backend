@@ -31,13 +31,13 @@ Educational process is taking a critical path and become online according to cur
 
 | Method      | Endpoint     | Description    |
 | :----------- | :----------- | :----------- 
-| GET      | /course/student   | see all courses for course by student   |
-| GET      | /course/student/:id   | see specific course for course by student   |
-| GET      | /course/teacher  | see all courses for course by student   |
-| GET      | /course/teacher/:id   | see specific course for course by teacher   |
-| POST      | /course   | create assignment for course by teacher    |
-| PUT      | /course/id   | update specific assignment for course by teacher   |
-| DELETE      | /course/id   | delete specific assignment for course by teacher   |
+| GET      | /course/student   | see all courses by student   |
+| GET      | /course/student/:id   | see specific course by student   |
+| GET      | /course/teacher  | see all courses by student   |
+| GET      | /course/teacher/:id   | see specific course by teacher   |
+| POST      | /course   | create course by teacher    |
+| PUT      | /course/id   | update specific course by teacher   |
+| DELETE      | /course/id   | delete specific course by teacher   |
 
 - Assignment Routes
 
@@ -70,7 +70,7 @@ Educational process is taking a critical path and become online according to cur
 | Method      | Endpoint     | Description    |
 | :----------- | :----------- | :----------- 
 | GET      | /getTeachers   | see all teachers   |
-| GET      | /showStudents   | see all students by student   |
+| GET      | /showStudents   | see all students by teacher   |
 | DELETE      | /userDelete/:id   | delete specific student by teacher  |
 | DELETE      | /teacherDelete/:id   | delete specific teacher by admin  |
 
@@ -82,7 +82,7 @@ Educational process is taking a critical path and become online according to cur
 
 -  Database UML
 
-![preview](./assets/databaseUml.jpg)
+![preview](./assets/databaseUmlNew.jpg)
 
 -  tests results
 
@@ -90,11 +90,18 @@ Educational process is taking a critical path and become online according to cur
 
 ![preview](./assets/testingQuiz.jpg)
 
+![preview](./assets/courseTests.JPG)
+
+![preview](./assets/authTests.JPG)
+
 ![preview](./assets/testinfAll.JPG)
+
 
 ### Deployments URLs
 
 [backend deployment URL](https://profdev-academy.herokuapp.com)
 
 [frontend deployment URL](https://profdev-academy.netlify.app)
+
+[UML board](https://miro.com/app/board/o9J_l4XNJLo=/)
 
