@@ -31,13 +31,13 @@ Educational process is taking a critical path and become online according to cur
 
 | Method      | Endpoint     | Description    |
 | :----------- | :----------- | :----------- 
-| GET      | /course/student   | see all courses for course by student   |
-| GET      | /course/student/:id   | see specific course for course by student   |
-| GET      | /course/teacher  | see all courses for course by student   |
-| GET      | /course/teacher/:id   | see specific course for course by teacher   |
-| POST      | /course   | create assignment for course by teacher    |
-| PUT      | /course/id   | update specific assignment for course by teacher   |
-| DELETE      | /course/id   | delete specific assignment for course by teacher   |
+| GET      | /course/student   | see all courses by student   |
+| GET      | /course/student/:id   | see specific course by student   |
+| GET      | /course/teacher  | see all courses by student   |
+| GET      | /course/teacher/:id   | see specific course by teacher   |
+| POST      | /course   | create course by teacher    |
+| PUT      | /course/id   | update specific course by teacher   |
+| DELETE      | /course/id   | delete specific course by teacher   |
 
 - Assignment Routes
 
