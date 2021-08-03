@@ -78,7 +78,7 @@ Educational process is taking a critical path and become online according to cur
 
 -  Main UML
 
-![preview](./assets/mainUml.jpg)
+![preview](./assets/ProjectUML.jpg)
 
 -  Database UML
 
