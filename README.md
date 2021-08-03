@@ -70,7 +70,7 @@ Educational process is taking a critical path and become online according to cur
 | Method      | Endpoint     | Description    |
 | :----------- | :----------- | :----------- 
 | GET      | /getTeachers   | see all teachers   |
-| GET      | /showStudents   | see all students by student   |
+| GET      | /showStudents   | see all students by teacher   |
 | DELETE      | /userDelete/:id   | delete specific student by teacher  |
 | DELETE      | /teacherDelete/:id   | delete specific teacher by admin  |
 
