@@ -98,3 +98,5 @@ Educational process is taking a critical path and become online according to cur
 
 [frontend deployment URL](https://profdev-academy.netlify.app)
 
+[UML board](https://miro.com/app/board/o9J_l4XNJLo=/)
+
