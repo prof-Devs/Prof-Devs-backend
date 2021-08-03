@@ -82,7 +82,7 @@ Educational process is taking a critical path and become online according to cur
 
 -  Database UML
 
-![preview](./assets/databaseUml.jpg)
+![preview](./assets/databaseUmlNew.jpg)
 
 -  tests results
 
