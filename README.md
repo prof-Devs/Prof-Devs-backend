@@ -105,3 +105,6 @@ Educational process is taking a critical path and become online according to cur
 
 [UML board](https://miro.com/app/board/o9J_l4XNJLo=/)
 
+[presentation](https://my.visme.co/view/y4mvm87z-401mid-project#s1)
+
+
