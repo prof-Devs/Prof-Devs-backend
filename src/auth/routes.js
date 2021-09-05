@@ -81,20 +81,20 @@ authRouter.post('/signin/admin', basicAuth.fun3, (req, res, next) => {
     throw new Error(e.message)
   }
 });
-// authRouter.get('/getUsers', async (req, res, next) => {
-//   try {
-//     const allUsers = [];
-//     const students = await User.find({});
+authRouter.get('/getUsers', async (req, res, next) => {
+  try {
+    const allUsers = [];
+    const students = await User.find({});
 
-//     const teachers = await Teacher.find({});
-//     students.map(ele => allUsers.push(ele));
-//     teachers.map(ele => allUsers.push(ele));
+    const teachers = await Teacher.find({});
+    students.map(ele => allUsers.push(ele));
+    teachers.map(ele => allUsers.push(ele));
 
-//     res.send(allUsers);
-//   } catch (e) {
-//     throw new Error(e.message)
-//   }
-// });
+    res.send(allUsers);
+  } catch (e) {
+    throw new Error(e.message)
+  }
+});
 
 authRouter.get('/getTeachers', async (req, res, next) => {
   try {
