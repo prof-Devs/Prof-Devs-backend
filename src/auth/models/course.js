@@ -9,7 +9,9 @@ const course = new mongoose.Schema({
     courseAssignments: { type: Array, required: false },
     courseQuizes: { type: Array, required: false },
     marks: { type: Array, required: false },
-    courseTeacher: { type: String, required: true }
+    courseTeacher: { type: String, required: true },
+    firstTeacherName: { type: String, required: true },
+    lastTeacherName: { type: String, required: true },
 })
 
 module.exports = mongoose.model('course', course)
