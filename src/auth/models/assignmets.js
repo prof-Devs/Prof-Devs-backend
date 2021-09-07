@@ -11,6 +11,4 @@ let assignment = new mongoose.Schema({
   courseId:{type: String,required: true}
 });
 
-let assignmentModel = mongoose.model('assignment', assignment);
-
-module.exports = {assignmentModel,assignment}
+module.exports = mongoose.model('assignment', assignment);

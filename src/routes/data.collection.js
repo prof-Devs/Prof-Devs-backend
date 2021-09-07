@@ -15,6 +15,10 @@ class DataCollection {
     }
   }
 
+  getForCourse(id,ggg) {
+      return this.model.find({id:ggg});
+  }
+
   create(record) {
     let newRecord = new this.model(record);
     return newRecord.save();
