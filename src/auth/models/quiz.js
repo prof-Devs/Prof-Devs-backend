@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const quiz = new mongoose.Schema({
-  title:{type: String, required: true, unique: true},
+  title:{type: String, required: true},
   questions:{type: Array, required: true}, //array of objects [{question:'', options:[], correct-answer:''},{}]
   timer:{type: Number ,required: true},
   quizFile:{type: Buffer},
@@ -11,4 +11,6 @@ const quiz = new mongoose.Schema({
   // students: { type: Array }
 });
 
-module.exports = mongoose.model('quiz', quiz);
+const quizModel = mongoose.model('quiz', quiz);
+
+module.exports = {quizModel,quiz};

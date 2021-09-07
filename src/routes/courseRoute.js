@@ -4,22 +4,77 @@ const Collection = require('./data.collection');
 const bearerAuth = require('../auth/middleware/bearer');
 const permissions = require('../auth/middleware/acl');
 const course = require('../auth/models/course');
+const { assignmentModel } = require('../auth/models/assignmets');
 
 
 const router = express.Router();
 
 const courseInstCollection = new Collection(course);
+const assignmentInstCollection = new Collection(assignmentModel);
 
 // -------------------//
 // course route 
 
 router.get('/student', bearerAuth.func1, courseHandleGetAll);
 router.get('/student/:id', bearerAuth.func1, courseHandleGetOne);
-router.get('/teacher',bearerAuth.func2, courseHandleGetAll);
-router.get('/teacher/:id',bearerAuth.func2, courseHandleGetOne);
-router.post('/',bearerAuth.func2, permissions('create'),courseHandleCreate);
-router.put('/:id',bearerAuth.func2, permissions('update'), courseHandleUpdate);
+router.get('/teacher', bearerAuth.func2, courseHandleGetAll);
+router.get('/teacher/:id', bearerAuth.func2, courseHandleGetOne);
+router.post('/', bearerAuth.func2, permissions('create'), courseHandleCreate);
+router.put('/:id', bearerAuth.func2, permissions('update'), courseHandleUpdate);
 router.delete('/:id', bearerAuth.func2, permissions('delete'), courseHandleDelete);
+
+router.get('/student/getAssignments/:courseId', bearerAuth.func1, courseHandleGetAllAssignment);
+router.get('/teacher/getAssignments/:courseId', bearerAuth.func2, courseHandleGetAllAssignment);
+
+router.put('/addAssignment/:courseId', bearerAuth.func2, courseHandlePostAssignment);
+// router.put('/updateAssignment/:courseId/:assignmentId',bearerAuth.func2, courseHandleUpdateAssignment);
+// router.delete('/deleteAssignment/:courseId/:assignmentId',bearerAuth.func2, courseHandleDeleteAssignment);
+
+
+// new
+
+async function courseHandleGetAllAssignment(req, res) {
+    try {
+        const id = req.params.courseId;
+        let allRecords = await courseInstCollection.get(id);
+        let allAssignments = allRecords.assignmentModel;
+        res.status(200).json(allAssignments);
+
+    } catch (e) {
+        throw new Error(e.message)
+    }
+};
+
+
+async function courseHandlePostAssignment(req, res) {
+    try {
+        // let obj = req.body;
+        const id = req.params.courseId;
+
+        let allRecordsNew = await assignmentInstCollection.get();
+        if (allRecordsNew) {
+            allRecordsNew.filter(ele => {
+                ele.courseId === id;
+                console.log('llllllllll');
+            })
+        } else {
+            res.status(201).json('🙄');
+
+        }
+
+        let updatedRecord = await courseInstCollection.update(id, allRecordsNew);
+
+        console.log('updatedRecord ', updatedRecord );
+        console.log('allRecordsNew ', allRecordsNew );
+        res.status(201).json(updatedRecord );
+    } catch (e) {
+        throw new Error(e.message)
+    }
+}
+
+
+
+
 
 
 // course functions
