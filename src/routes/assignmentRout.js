@@ -2,10 +2,10 @@ const express = require('express');
 const Collection = require('./data.collection');
 const bearerAuth = require('../auth/middleware/bearer');
 const permissions = require('../auth/middleware/acl');
-const assignment = require('../auth/models/assignmets');
+const assignmentModel = require('../auth/models/assignmets');
 const router = express.Router();
 
-const assignmentInstCollection = new Collection(assignment);
+const assignmentInstCollection = new Collection(assignmentModel);
 
 // -------------------//
 

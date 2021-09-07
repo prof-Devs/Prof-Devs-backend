@@ -3,10 +3,10 @@ const express = require('express');
 const Collection = require('./data.collection');
 const bearerAuth = require('../auth/middleware/bearer');
 const permissions = require('../auth/middleware/acl');
-const quiz = require('../auth/models/quiz');
+const quizModel = require('../auth/models/quiz');
 const router = express.Router();
 
-const quizInstCollection = new Collection(quiz);
+const quizInstCollection = new Collection(quizModel);
 
 // -------------------//
 
