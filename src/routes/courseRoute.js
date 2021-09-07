@@ -82,7 +82,8 @@ async function courseHandlePostAssignment(req, res) {
 async function courseHandleGetAll(req, res) {
     try {
         let allRecords = await courseInstCollection.get();
-        res.status(200).json(allRecords);
+        res.status(200).send(allRecords);
+        console.log(allRecords);
 
     } catch (e) {
         throw new Error(e.message)
@@ -102,6 +103,7 @@ async function courseHandleGetOne(req, res) {
 
 async function courseHandleCreate(req, res) {
     try {
+        console.log(req.body);
         let obj = req.body;
         let newRecord = await courseInstCollection.create(obj);
         res.status(201).json(newRecord);
